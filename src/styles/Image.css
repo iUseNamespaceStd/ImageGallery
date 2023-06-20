@@ -1,0 +1,13 @@
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.image-container img {
+    height: 200px;
+    width: 250px;
+    object-fit: cover;
+}

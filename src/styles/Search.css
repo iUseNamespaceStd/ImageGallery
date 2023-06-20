@@ -1,0 +1,9 @@
+.search-container {
+    text-align: center;
+    padding: 20px;
+}
+
+input[type=search], button {
+    padding: 8px;
+    font-size: 1rem;
+}

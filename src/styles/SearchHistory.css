@@ -1,0 +1,16 @@
+.search-history-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+.tag {
+    padding: 5px;
+    background-color: #333;
+    color: #ffffff;
+    border-radius: 5px;
+    min-width: 50px;
+    cursor: pointer;
+}

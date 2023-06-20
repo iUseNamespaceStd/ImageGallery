@@ -1,30 +1,31 @@
 import { useEffect, useState } from 'react';
 import ImageProvider from '../services/ImageProvider';
+import '../styles/Image.css';
 
-const Image = () => {
+const Image = (props) => {
   const [imageData, setImageData] = useState(null);
 
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = await fetch(ImageProvider());
-        const json = await response.json();
+        const json = await ImageProvider(props.query);
         setImageData(json);
+        console.log(imageData);
       } catch (error) {
         console.log(error);
       }
     };
     fetchImage();
-  }, [])
+  }, [props.query])
 
   if (!imageData) {
     return null;
   }
 
   return (
-    <div style={{display: "flex", flexWrap: "wrap" , justifyContent: "center", alignItems: "center", gap: "20px"}}>
+    <div className="image-container">
       {imageData.photos.photo.map((photo) => (
-        <img style={{height: "200px", width: "250px", objectFit: "cover"}}
+        <img
           key={photo.id}
           src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
           alt={photo.title}
@@ -34,4 +35,4 @@ const Image = () => {
   );
 }
 
-export default Image
+export default Image;
