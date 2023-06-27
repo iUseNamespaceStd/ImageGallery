@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../styles/Search.css';
 
 const Search = (props) => {
@@ -8,13 +8,15 @@ const Search = (props) => {
         props.onQueryChange(query);
     }
 
+    useEffect(() => setQuery(props?.query),[props?.query]);
+
     return (
         <div className="search-container">
             <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            type="search" />
-            <button onClick={onSubmitUserQuery}>Search</button>
+            type="search" onKeyUp={(e) => {if(e.key === "Enter" ) onSubmitUserQuery(query);}}/>
+            <button onClick={onSubmitUserQuery} onKeyUp={onSubmitUserQuery}>Search</button>
         </div>
     );
 };

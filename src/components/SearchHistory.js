@@ -14,7 +14,7 @@ const SearchHistory = (props) => {
     return (
         <div className="search-history-wrapper">
             {history.map((value, index) => (
-                <div className="tag" key={index}>{value}</div>
+                <div className="tag" key={index} onClick={() => props.onTagClick(value)}>{value}</div>
             ))}
         </div>
     );

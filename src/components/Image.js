@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ImageProvider from '../services/ImageProvider';
 import '../styles/Image.css';
+import ImageContext from '../services/ImageContext';
 
 const Image = (props) => {
   const [imageData, setImageData] = useState(null);
@@ -29,6 +30,7 @@ const Image = (props) => {
           key={photo.id}
           src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
           alt={photo.title}
+          onClick={props.handleOnClick}
         />
       ))}
     </div>
