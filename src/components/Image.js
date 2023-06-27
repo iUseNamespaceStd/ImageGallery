@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ImageProvider from '../services/ImageProvider';
 import '../styles/Image.css';
+import { QueryContext, SearchClickedContext } from './QueryContext';
 
-const Image = (props) => {
+const Image = () => {
+  const query = useContext(QueryContext);
+  const searchClicked = useContext(SearchClickedContext);
   const [imageData, setImageData] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const json = await ImageProvider(props.query);
-        setImageData(json);
-        console.log(imageData);
+        if (initialLoad || searchClicked) {
+          const json = await ImageProvider(query);
+          setImageData(json);
+        }
+        setInitialLoad(false);
       } catch (error) {
         console.log(error);
       }
     };
     fetchImage();
-  }, [props.query])
+  }, [query, searchClicked, initialLoad])
 
   if (!imageData) {
     return null;

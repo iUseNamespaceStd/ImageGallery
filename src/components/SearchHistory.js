@@ -1,20 +1,29 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react";
 import '../styles/SearchHistory.css';
+import { QueryContext, QueryUpdateContext, SearchClickedContext } from "./QueryContext";
 
-const SearchHistory = (props) => {
+const SearchHistory = () => {
+    const query = useContext(QueryContext);
+    const handleQueryChange = useContext(QueryUpdateContext);
+    const searchClicked = useContext(SearchClickedContext);
     const [history, setHistory] = useState([]);
 
     useEffect(() => {
-        var duplicateFlag = history.some(h => h === props.query);
-        if (props.query?.length > 0 && !duplicateFlag) {
-            setHistory(prevHistory => [...prevHistory, props.query]);
+        var duplicateFlag = history.some(h => h === query);
+        if (query?.length > 0 && !duplicateFlag && searchClicked) {
+            setHistory(prevHistory => [...prevHistory, query]);
         }
-    }, [props.query])
+    }, [query, searchClicked])
+
+    const onTagSelection = (value) =>  {
+        handleQueryChange(value, true);
+    }
 
     return (
         <div className="search-history-wrapper">
             {history.map((value, index) => (
-                <div className="tag" key={index}>{value}</div>
+                <div className="tag" key={index}
+                onClick={() => onTagSelection(value)}>{value}</div>
             ))}
         </div>
     );

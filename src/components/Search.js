@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useContext } from "react";
 import '../styles/Search.css';
+import { QueryUpdateContext } from "./QueryContext";
 
-const Search = (props) => {
-    const [query, setQuery] = useState("");
+const Search = () => {
+    const handleQueryChange = useContext(QueryUpdateContext);
     
     const onSubmitUserQuery = () => {
-        props.onQueryChange(query);
-    }
-
+        const inputValue = document.getElementById('search-input').value;
+        handleQueryChange(inputValue, true);
+    };
+ 
     return (
         <div className="search-container">
             <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            id="search-input"
+            onChange={(e) => handleQueryChange(e.target.value, false)}
             type="search" />
             <button onClick={onSubmitUserQuery}>Search</button>
         </div>
