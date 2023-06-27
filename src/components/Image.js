@@ -7,22 +7,30 @@ const Image = () => {
   const query = useContext(QueryContext);
   const searchClicked = useContext(SearchClickedContext);
   const [imageData, setImageData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
     const fetchImage = async () => {
       try {
         if (initialLoad || searchClicked) {
+          setIsLoading(true);
           const json = await ImageProvider(query);
           setImageData(json);
+          setIsLoading(false);
         }
         setInitialLoad(false);
       } catch (error) {
         console.log(error);
+        setIsLoading(false);
       }
     };
     fetchImage();
   }, [query, searchClicked, initialLoad])
+
+  if (isLoading) {
+    return <div className="loader">Loading...</div>;
+  }
 
   if (!imageData) {
     return null;
