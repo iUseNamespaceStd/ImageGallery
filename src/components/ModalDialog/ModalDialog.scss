@@ -1,0 +1,17 @@
+.modal-content {
+}
+.modal-body {
+  padding: 0;
+  border: none;
+
+  .image-container {
+    margin: 0;
+    padding: 0;
+
+    img {
+      height: 600px;
+      width: 750px;
+      object-fit: cover;
+    }
+  }
+}
