@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { QueryUpdateContext } from "../services/QueryContext";
+import { QueryContext, QueryUpdateContext } from "../services/QueryContext";
 import '../styles/Search.css';
 
 const Search = () => {
+    const query = useContext(QueryContext);
     const handleQueryChange = useContext(QueryUpdateContext);
     
     const onSubmitUserQuery = () => {
@@ -14,6 +15,7 @@ const Search = () => {
         <div className="search-container">
             <input
                 id="search-input"
+                value={query}
                 placeholder="e.g. cat"
                 onChange={(e) => handleQueryChange(e.target.value, false)}
                 type="search"
