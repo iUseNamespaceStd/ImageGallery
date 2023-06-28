@@ -14,6 +14,7 @@ const Search = (props) => {
         <div className="search-container">
             <input
             value={query}
+            placeholder="e.g. cat"
             onChange={(e) => setQuery(e.target.value)}
             type="search" onKeyUp={(e) => {if(e.key === "Enter" ) onSubmitUserQuery(query);}}/>
             <button onClick={onSubmitUserQuery} onKeyUp={onSubmitUserQuery}>Search</button>

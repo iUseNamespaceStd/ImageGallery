@@ -6,17 +6,18 @@ import SearchHistory from "./components/SearchHistory";
 import logo from "./media/logo.png";
 import ModalDialog from "./components/ModalDialog/ModalDialog";
 import ImageContext from "./services/ImageContext";
+import CarouselSlider from "./components/CarouselSlider/CarouselSlider";
 
 function App() {
   const [query, setQuery] = useState("");
-  const [contextValue, setContextValue] = useState({show:false, src:""});
+  const [contextValue, setContextValue] = useState({show:false, index:0, imageDataArr: []});
 
 
   const handleQueryChange = (newQuery) => {
     setQuery(newQuery);
   };
 
-  const onImageClick = (e) => {setContextValue({show: true, src: e.target.src}); console.log(e);};
+  const onImageClick = (e,imageIndex, imageDataArr) => {setContextValue({show: true, index: imageIndex, imageDataArr: imageDataArr}); console.log(e);};
 
 
   return (

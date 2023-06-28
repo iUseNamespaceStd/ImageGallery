@@ -30,7 +30,7 @@ const Image = (props) => {
           key={photo.id}
           src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
           alt={photo.title}
-          onClick={props.handleOnClick}
+          onClick={ (e) => props.handleOnClick(e,photo.id,imageData.photos.photo)}
         />
       ))}
     </div>
