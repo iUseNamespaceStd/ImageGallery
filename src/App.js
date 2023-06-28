@@ -1,20 +1,25 @@
-import './App.css';
-import Image from './components/Image';
-import { QueryProvider } from './components/QueryContext';
-import Search from './components/Search';
-import SearchHistory from './components/SearchHistory';
-import logo from './media/logo.png';
+import "./App.css";
+import Image from "./components/Image";
+import ModalDialog from "./components/ModalDialog/ModalDialog";
+import Search from "./components/Search";
+import SearchHistory from "./components/SearchHistory";
+import logo from "./media/logo.png";
+import { ImageContextProvider } from "./services/ImageContext";
+import QueryProvider from "./services/QueryContext";
 
 function App() {
 
   return (
     <div className="App">
-        <img className="logo" src={logo} alt="logo" />
-        <QueryProvider>
-          <Search />
-          <SearchHistory />
+      <img className="logo" src={logo} alt="logo" />
+      <QueryProvider>
+        <Search />
+        <SearchHistory />
+        <ImageContextProvider>
           <Image />
-        </QueryProvider>
+          <ModalDialog title="motitre" />
+        </ImageContextProvider>
+      </QueryProvider>
     </div>
   );
 }
