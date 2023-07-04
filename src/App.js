@@ -17,7 +17,7 @@ function App() {
         <SearchHistory />
         <ImageContextProvider>
           <Image />
-          <ModalDialog title="motitre" />
+          <ModalDialog />
         </ImageContextProvider>
       </QueryProvider>
     </div>
